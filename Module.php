@@ -1,16 +1,33 @@
 <?php
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/**
+ * Module.php
+ *
+ * LICENSE: Copyright David White [monkeyphp] <git@monkeyphp.com> http://www.monkeyphp.com/
+ *
+ * PHP Version 5.3.6
+ *
+ * @category  AlbumClient
+ * @package   AlbumClient
+ * @author    David White [monkeyphp] <git@monkeyphp.com>
+ * @copyright 2011 David White (c) monkeyphp.com
+ * @license   http://www.monkeyphp.com/ MonkeyPHP
+ * @version   Revision: ##VERSION##
+ * @link      http://www.monkeyphp.com/ MonkeyPHP
+ * @created   28-Oct-2012 11:21:44
  */
 namespace AlbumClient;
-
 // use Zend
 use Zend\Soap\Client;
 /**
- * Description of Module
+ * Module
  *
- * @author David White [monkeyphp] <david@monkeyphp.com>
+ * @category   AlbumClient
+ * @package    AlbumClient
+ * @author     David White [monkeyphp] <git@monkeyphp.com>
+ * @copyright  2011 David White (c) monkeyphp.com
+ * @license    http://www.monkeyphp.com/ MonkeyPHP
+ * @version    Release: ##VERSION##
+ * @link       http://www.monkeyphp.com/ MonkeyPHP
  */
 class Module
 {
@@ -67,4 +84,5 @@ class Module
     {
         return include __DIR__ . '/config/module.config.php';
     }
+
 }
