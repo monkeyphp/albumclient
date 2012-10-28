@@ -2,21 +2,18 @@
 /**
  * IndexController.php
  *
- * Long description for file (if any)...
- *
- * LICENSE: Copyright David White [monkeyphp] <david@monkeyphp.com> http://www.monkeyphp.com/
+ * LICENSE: Copyright David White [monkeyphp] <git@monkeyphp.com> http://www.monkeyphp.com/
  *
  * PHP Version 5.3.6
  *
- * @category
- * @package    Expression package is undefined on line 12, column 18 in Templates/Scripting/EmptyPHP.php.
- * @subpackage
- * @author     David White [monkeyphp] <david@monkeyphp.com>
+ * @category   AlbumClient
+ * @package    AlbumClient
+ * @subpackage Controller
+ * @author     David White [monkeyphp] <git@monkeyphp.com>
  * @copyright  2011 David White (c) monkeyphp.com
  * @license    http://www.monkeyphp.com/
  * @version    Revision: ##VERSION##
  * @link       http://www.monkeyphp.com/
- * @since
  * @created    28-Oct-2012 14:17:19
  */
 namespace AlbumClient\Controller;
@@ -26,19 +23,16 @@ namespace AlbumClient\Controller;
 use Zend\Mvc\Controller\AbstractActionController;
 use Zend\View\Model\ViewModel;
 /**
- * Short description for class
+ * IndexController
  *
- * Long description for class (if any)...
- *
- * @category
- * @package
- * @subpackage
- * @author     David White [monkeyphp] <david@monkeyphp.com>
+ * @category   AlbumClient
+ * @package    AlbumClient
+ * @subpackage Controller
+ * @author     David White [monkeyphp] <git@monkeyphp.com>
  * @copyright  2011 David White (c) monkeyphp.com
  * @license    http://www.monkeyphp.com/
  * @version    Release: ##VERSION##
  * @link       http://www.monkeyphp.com/
- * @since
  */
 class IndexController extends AbstractActionController
 {
@@ -86,12 +80,20 @@ class IndexController extends AbstractActionController
      */
     public function purchaseAction()
     {
+        $request = $this->getRequest();
+
         $id = (int)$this->params('id');
         if (! $id) {
             return $this->redirect()->toRoute('album-client');
         }
-        
-        return new ViewModel(array('album' => $this->getClient()->findAlbum()));
+
+        if ($request->isPost()) {
+            if ($request->getPost('purchase') == 'Purchase') {
+                $this->getClient()->purchaseAlbum((int)$request->getPost('id'));
+            }
+            return $this->redirect()->toRoute('album-client');
+        }
+        return new ViewModel(array('album' => $this->getClient()->findAlbum($id)));
     }
 
 }

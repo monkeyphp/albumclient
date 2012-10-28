@@ -2,16 +2,13 @@
 /**
  * purchase.phtml
  *
- * Long description for file (if any)...
- *
- * LICENSE: Copyright David White [monkeyphp] <david@monkeyphp.com> http://www.monkeyphp.com/
+ * LICENSE: Copyright David White [monkeyphp] <git@monkeyphp.com> http://www.monkeyphp.com/
  *
  * PHP Version 5.3.6
  *
- * @category
- * @package    Expression package is undefined on line 12, column 18 in Templates/Scripting/EmptyPHP.php.
- * @subpackage
- * @author     David White [monkeyphp] <david@monkeyphp.com>
+ * @category   AlbumClient
+ * @package    AlbumClient
+ * @author     David White [monkeyphp] <git@monkeyphp.com>
  * @copyright  2011 David White (c) monkeyphp.com
  * @license    http://www.monkeyphp.com/
  * @version    Revision: ##VERSION##
@@ -19,18 +16,38 @@
  * @since
  * @created    28-Oct-2012 16:10:26
  */
-/**
- * Short description for class
- *
- * Long description for class (if any)...
- *
- * @category
- * @package
- * @subpackage
- * @author     David White [monkeyphp] <david@monkeyphp.com>
- * @copyright  2011 David White (c) monkeyphp.com
- * @license    http://www.monkeyphp.com/
- * @version    Release: ##VERSION##
- * @link       http://www.monkeyphp.com/
- * @since
- */
+?>
+<?php
+$title = $this->album->title;
+$this->headTitle($title);
+?>
+
+<h1><?php echo $this->escapeHtml($title); ?> by <?php echo $this->escapeHtml($this->album->artist); ?></h1>
+
+<?php if ($this->album->quantity < 1): ?>
+
+<p>
+    It appears that we are out of stock of <?php echo $this->escapeHtml($this->album->title); ?>
+    by <?php echo $this->escapeHtml($this->album->artist); ?>
+</p>
+<a href="<?php echo $this->url('album-client'); ?>" class="btn">Back to Inventory</a>
+
+
+<?php else: ?>
+
+<div>
+
+    <p>
+        Purchase the Album: <?php echo $this->escapeHtml($this->album->title); ?>
+        by <?php echo $this->escapeHtml($this->album->artist); ?>
+    </p>
+
+    <form action="<?php echo $this->url('album-client', array('controller' => 'index', 'action' => 'purchase', 'id' => $this->album->id)); ?>" method="POST">
+        <input type="hidden" name="id" value="<?php echo $this->escapeHtml($this->album->id); ?>" />
+        <input type="submit" name="purchase" value="Purchase" />
+        <input type="submit" name="purchase" value="Cancel" />
+    </form>
+
+</div>
+
+<?php endif; ?>
