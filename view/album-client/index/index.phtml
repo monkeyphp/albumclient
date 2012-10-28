@@ -1,0 +1,64 @@
+<?php
+/**
+ * index.phtml
+ *
+ * Long description for file (if any)...
+ *
+ * LICENSE: Copyright David White [monkeyphp] <david@monkeyphp.com> http://www.monkeyphp.com/
+ *
+ * PHP Version 5.3.6
+ *
+ * @category
+ * @package    Expression package is undefined on line 12, column 18 in Templates/Scripting/EmptyPHP.php.
+ * @subpackage
+ * @author     David White [monkeyphp] <david@monkeyphp.com>
+ * @copyright  2011 David White (c) monkeyphp.com
+ * @license    http://www.monkeyphp.com/
+ * @version    Revision: ##VERSION##
+ * @link       http://www.monkeyphp.com/
+ * @since
+ * @created    28-Oct-2012 14:24:45
+ */
+?>
+<?php
+// set the page title
+$title = 'Album Inventory';
+$this->headTitle($title);
+?>
+<h1><?php echo $this->escapeHtml($title); ?></h1>
+
+<p>
+    Check availability and purchase here
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Artist</th>
+            <th>Quantity</th>
+            <th>Purchase</th>
+        </tr>
+    </thead>
+    <?php if (count($this->albums)): ?>
+    <tbody>
+        <?php foreach ($this->albums as $album): ?>
+        <tr>
+            <td><?php echo $this->escapeHtml($album->id); ?></td>
+            <td><?php echo $this->escapeHtml($album->title); ?></td>
+            <td><?php echo $this->escapeHtml($album->artist); ?></td>
+            <td><?php echo $this->escapeHtml($album->quantity); ?></td>
+            <td>
+                <a
+                    class="btn"
+                    href="<?php echo $this->url('album-client', array('action' => 'purchase', 'id' => $album->id)); ?>"
+                >
+                    Purchase
+                </a>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+    <?php endif; ?>
+</table>
