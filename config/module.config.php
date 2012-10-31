@@ -24,6 +24,10 @@ return array(
         )
     ),
 
+    // location of the soap service
+    // override this here OR add to PATH/TO/APPLICATION/config/autoload/local.php
+    'wsdl' => 'http://learning-zf2/album-service/service?wsdl',
+
     // routes
     'router' => array(
         'routes' => array(
